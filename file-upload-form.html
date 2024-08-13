@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload Form</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23001220"/><path d="M0 0L100 100M100 0L0 100" stroke="%23ffffff10" stroke-width="0.5"/><circle cx="50" cy="50" r="40" fill="none" stroke="%23ffffff20" stroke-width="0.5"/></svg>');
+            background-size: 100px 100px;
+        }
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .upload-btn {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(46, 82, 152, 0.5);
+            display: inline-flex;
+            align-items: center;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(46, 82, 152, 0.7);
+        }
+        .upload-icon {
+            margin-right: 10px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <form action="https://hook.make.com/your-webhook-url" method="post" enctype="multipart/form-data">
+        <input type="file" id="csvFile" name="file" accept=".csv" />
+        <label for="csvFile" class="upload-btn">
+            <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            Upload
+        </label>
+    </form>
+    <script>
+        document.getElementById('csvFile').addEventListener('change', function() {
+            if (this.files.length > 0) {
+                document.querySelector('form').submit();
+            }
+        });
+    </script>
+</body>
+</html>
